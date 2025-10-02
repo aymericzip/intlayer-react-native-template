@@ -1,10 +1,8 @@
-const { getDefaultConfig } = require("expo/metro-config");
 const { configMetroIntlayer } = require("react-native-intlayer/metro");
+const { getDefaultConfig } = require("expo/metro-config");
 
 module.exports = (async () => {
   const defaultConfig = getDefaultConfig(__dirname);
 
-  const result = await configMetroIntlayer(defaultConfig);
-
-  return result;
+  return await configMetroIntlayer(defaultConfig);
 })();

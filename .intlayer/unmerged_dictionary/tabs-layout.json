@@ -1,0 +1,26 @@
+[
+  {
+    "key": "tabs-layout",
+    "content": {
+      "homeTabTitle": {
+        "nodeType": "translation",
+        "translation": {
+          "en": "Home",
+          "fr": "Accueil",
+          "es": "Inicio"
+        }
+      },
+      "exploreTabTitle": {
+        "nodeType": "translation",
+        "translation": {
+          "en": "Explore",
+          "fr": "Explorer",
+          "es": "Explorar"
+        }
+      }
+    },
+    "localId": "tabs-layout::local::app/(tabs)/_layout.content.ts",
+    "location": "locale",
+    "filePath": "app/(tabs)/_layout.content.ts"
+  }
+]

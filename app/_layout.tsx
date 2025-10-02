@@ -3,48 +3,43 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
-import "react-native-reanimated";
+import { IntlayerProviderContent, useIntlayer } from "react-intlayer";
 import { intlayerPolyfill } from "react-native-intlayer";
-import { IntlayerProviderContent } from "react-intlayer";
-import { getLocales } from "expo-localization";
-import { useColorScheme } from "@/hooks/useColorScheme";
+import "react-native-reanimated";
+
+import { useColorScheme } from "@/hooks/use-color-scheme";
+import React from "react";
+
+export const unstable_settings = {
+  anchor: "(tabs)",
+};
 
 intlayerPolyfill();
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-const getDeviceLocale = () => getLocales()[0]?.languageTag ?? "en";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
 
   return (
-    <IntlayerProviderContent defaultLocale={getDeviceLocale()}>
+    <IntlayerProviderContent>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
+          <ModalLayout />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
     </IntlayerProviderContent>
+  );
+}
+
+export function ModalLayout() {
+  const { modalTitle } = useIntlayer("root-layout");
+  return (
+    <Stack.Screen
+      name="modal"
+      options={{ presentation: "modal", title: modalTitle }}
+    />
   );
 }

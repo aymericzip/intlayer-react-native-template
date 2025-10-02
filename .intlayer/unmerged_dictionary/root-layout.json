@@ -1,0 +1,18 @@
+[
+  {
+    "key": "root-layout",
+    "content": {
+      "modalTitle": {
+        "nodeType": "translation",
+        "translation": {
+          "en": "Modal",
+          "fr": "Modale",
+          "es": "Modal"
+        }
+      }
+    },
+    "localId": "root-layout::local::app/_layout.content.ts",
+    "location": "locale",
+    "filePath": "app/_layout.content.ts"
+  }
+]

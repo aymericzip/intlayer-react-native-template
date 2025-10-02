@@ -1,0 +1,25 @@
+/* eslint-disable */
+export default {
+  "key": "tabs-layout",
+  "content": {
+    "homeTabTitle": {
+      "nodeType": "translation",
+      "translation": {
+        "en": "Home",
+        "fr": "Accueil",
+        "es": "Inicio"
+      }
+    },
+    "exploreTabTitle": {
+      "nodeType": "translation",
+      "translation": {
+        "en": "Explore",
+        "fr": "Explorer",
+        "es": "Explorar"
+      }
+    }
+  },
+  "localIds": [
+    "tabs-layout::local::app/(tabs)/_layout.content.ts"
+  ]
+} as const;

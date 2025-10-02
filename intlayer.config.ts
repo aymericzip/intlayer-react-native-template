@@ -1,16 +1,13 @@
 import { Locales, type IntlayerConfig } from "intlayer";
 
+export const locales = [Locales.ENGLISH, Locales.FRENCH, Locales.SPANISH];
+
+/** @type {import('intlayer').IntlayerConfig} */
 const config: IntlayerConfig = {
   internationalization: {
-    locales: [
-      Locales.ENGLISH,
-      Locales.RUSSIAN,
-      // ... Add any other locales you need
-    ],
+    locales,
     defaultLocale: Locales.ENGLISH,
-  },
-  content: {
-    contentDirName: ".", // Check content files in the whole application
+    strictMode: "strict",
   },
 };
 

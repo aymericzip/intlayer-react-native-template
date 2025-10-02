@@ -1,114 +1,155 @@
-import { StyleSheet, Image, Platform } from 'react-native';
-import { useIntlayer } from 'react-intlayer';
+import { Image } from "expo-image";
+import { Button, Platform, StyleSheet } from "react-native";
 
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+import { ExternalLink } from "@/components/external-link";
+import ParallaxScrollView from "@/components/parallax-scroll-view";
+import { ThemedText } from "@/components/themed-text";
+import { ThemedView } from "@/components/themed-view";
+import { Collapsible } from "@/components/ui/collapsible";
+import { IconSymbol } from "@/components/ui/icon-symbol";
+import { Fonts } from "@/constants/theme";
+import { useIntlayer, useLocale } from "react-intlayer";
 
 export default function TabTwoScreen() {
-  // 1. Grab all the content from intlayer for "tab-two-screen"
   const {
     title,
-    description,
-    collapsibles: {
-      fileBasedRouting,
-      androidIosWebSupport,
-      images,
-      customFonts,
-      lightDarkMode,
-      animations,
-    },
-  } = useIntlayer('tab-two-screen');
+    intro,
+    routing,
+    common,
+    platforms,
+    youCanOpen,
+    images,
+    themes,
+    animations,
+  } = useIntlayer("tab-two-screen");
+  const { availableLocales, setLocale } = useLocale();
 
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">{title}</ThemedText>
-      </ThemedView>
-      <ThemedText>{description}</ThemedText>
-
-      {/* Collapsible #1 */}
-      <Collapsible title={fileBasedRouting.title.value}>
+    <>
+      <ParallaxScrollView
+        headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
+        headerImage={
+          <IconSymbol
+            size={310}
+            color="#808080"
+            name="chevron.left.forwardslash.chevron.right"
+            style={styles.headerImage}
+          />
+        }
+      >
         <ThemedText>
-          {fileBasedRouting.description1}
-          <ThemedText type="defaultSemiBold">
-            app/(tabs)/index.tsx
-          </ThemedText>{' '}
-          {' and '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
+          {availableLocales.map((locale) => (
+            <Button
+              key={locale}
+              onPress={() => setLocale(locale)}
+              title={locale.toUpperCase()}
+            />
+          ))}
         </ThemedText>
-        <ThemedText>{fileBasedRouting.description2}</ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">{fileBasedRouting.learnMore}</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-
-      {/* Collapsible #2 */}
-      <Collapsible title={androidIosWebSupport.title.value}>
-        <ThemedText>{androidIosWebSupport.description}</ThemedText>
-      </Collapsible>
-
-      {/* Collapsible #3 */}
-      <Collapsible title={images.title.value}>
-        <ThemedText>{images.description1}</ThemedText>
-        <Image
-          source={require('@/assets/images/react-logo.png')}
-          style={{ alignSelf: 'center' }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">{images.learnMore}</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-
-      {/* Collapsible #4 */}
-      <Collapsible title={customFonts.title.value}>
-        <ThemedText>{customFonts.description1}</ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">{customFonts.learnMore}</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-
-      {/* Collapsible #5 */}
-      <Collapsible title={lightDarkMode.title.value}>
-        <ThemedText>{lightDarkMode.description}</ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">{lightDarkMode.learnMore}</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-
-      {/* Collapsible #6 */}
-      <Collapsible title={animations.title.value}>
-        <ThemedText>{animations.description1}</ThemedText>
-        {Platform.select({
-          ios: <ThemedText>{animations.description2}</ThemedText>,
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+        <ThemedView style={styles.titleContainer}>
+          <ThemedText
+            type="title"
+            style={{
+              fontFamily: Fonts.rounded,
+            }}
+          >
+            {title}
+          </ThemedText>
+        </ThemedView>
+        <ThemedText>{intro}</ThemedText>
+        <Collapsible title={routing.title}>
+          <ThemedText>
+            {routing.part1}{" "}
+            <ThemedText type="defaultSemiBold">
+              {routing.screenIndex}
+            </ThemedText>{" "}
+            {routing.and}{" "}
+            <ThemedText type="defaultSemiBold">
+              {routing.screenExplore}
+            </ThemedText>
+          </ThemedText>
+          <ThemedText>
+            {routing.part2a}{" "}
+            <ThemedText type="defaultSemiBold">{routing.layoutFile}</ThemedText>{" "}
+            {routing.part2b}
+          </ThemedText>
+          <ExternalLink href="https://docs.expo.dev/router/introduction">
+            <ThemedText type="link">{common.learnMore}</ThemedText>
+          </ExternalLink>
+        </Collapsible>
+        <Collapsible title={platforms.title}>
+          <ThemedText>
+            {youCanOpen[0]}{" "}
+            <ThemedText type="defaultSemiBold">{youCanOpen[1]}</ThemedText>
+          </ThemedText>
+        </Collapsible>
+        <Collapsible title={images.title}>
+          <ThemedText>
+            {images.part1}{" "}
+            <ThemedText type="defaultSemiBold">{images.at2x}</ThemedText>{" "}
+            {images.and}{" "}
+            <ThemedText type="defaultSemiBold">{images.at3x}</ThemedText>{" "}
+            {images.part2}
+          </ThemedText>
+          <Image
+            source={require("@/assets/images/react-logo.png")}
+            style={{ width: 100, height: 100, alignSelf: "center" }}
+          />
+          <ExternalLink href="https://reactnative.dev/docs/images">
+            <ThemedText type="link">{common.learnMore}</ThemedText>
+          </ExternalLink>
+        </Collapsible>
+        <Collapsible title={themes.title}>
+          <ThemedText>
+            {themes.part1}{" "}
+            <ThemedText type="defaultSemiBold">{themes.hook}</ThemedText>{" "}
+            {themes.part2}
+          </ThemedText>
+          <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
+            <ThemedText type="link">{common.learnMore}</ThemedText>
+          </ExternalLink>
+        </Collapsible>
+        <Collapsible title={animations.title}>
+          <ThemedText>
+            {animations.part1}{" "}
+            <ThemedText type="defaultSemiBold">
+              {animations.component}
+            </ThemedText>{" "}
+            {animations.part2}{" "}
+            <ThemedText
+              type="defaultSemiBold"
+              style={{ fontFamily: Fonts.mono }}
+            >
+              {animations.library}
+            </ThemedText>{" "}
+            {animations.part3}
+          </ThemedText>
+          {Platform.select({
+            ios: (
+              <ThemedText>
+                {animations.iosPart1}{" "}
+                <ThemedText type="defaultSemiBold">
+                  {animations.iosComponent}
+                </ThemedText>{" "}
+                {animations.iosPart2}
+              </ThemedText>
+            ),
+          })}
+        </Collapsible>
+      </ParallaxScrollView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   headerImage: {
-    color: '#808080',
+    color: "#808080",
     bottom: -90,
     left: -35,
-    position: 'absolute',
+    position: "absolute",
   },
   titleContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 8,
   },
 });
