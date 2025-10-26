@@ -5,8 +5,8 @@ import {
 } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { IntlayerProviderContent, useIntlayer } from "react-intlayer";
-import { intlayerPolyfill } from "react-native-intlayer";
+import { IntlayerProvider } from "react-native-intlayer";
+import { useIntlayer } from "react-intlayer";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/use-color-scheme";
@@ -16,13 +16,11 @@ export const unstable_settings = {
   anchor: "(tabs)",
 };
 
-intlayerPolyfill();
-
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <IntlayerProviderContent>
+    <IntlayerProvider>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -30,7 +28,7 @@ export default function RootLayout() {
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
-    </IntlayerProviderContent>
+    </IntlayerProvider>
   );
 }
 
