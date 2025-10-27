@@ -11,6 +11,7 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    ".intlayer/types/**/*.ts",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
   ]
