@@ -18,26 +18,20 @@ export const unstable_settings = {
 
 export default function RootLayout() {
 	const colorScheme = useColorScheme();
+	const { modalTitle } = useIntlayer("root-layout");
 
 	return (
 		<IntlayerProvider>
 			<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 				<Stack>
 					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-					<ModalLayout />
+					<Stack.Screen
+						name="modal"
+						options={{ presentation: "modal", title: modalTitle.value }}
+					/>
 				</Stack>
 				<StatusBar style="auto" />
 			</ThemeProvider>
 		</IntlayerProvider>
-	);
-}
-
-export function ModalLayout() {
-	const { modalTitle } = useIntlayer("root-layout");
-	return (
-		<Stack.Screen
-			name="modal"
-			options={{ presentation: "modal", title: modalTitle.value }}
-		/>
 	);
 }

@@ -57,7 +57,7 @@ export default function TabTwoScreen() {
           </ThemedText>
         </ThemedView>
         <ThemedText>{intro}</ThemedText>
-        <Collapsible title={routing.title}>
+        <Collapsible title={routing.title.value}>
           <ThemedText>
             {routing.part1}{" "}
             <ThemedText type="defaultSemiBold">
