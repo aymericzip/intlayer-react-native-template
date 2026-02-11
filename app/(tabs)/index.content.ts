@@ -77,11 +77,7 @@ const homeScreenContent = {
         fr: "Quand vous êtes prêt, exécutez",
         es: "Cuando estés listo, ejecuta",
       }),
-      command: t({
-        en: "npm run reset-project",
-        fr: "npm run reset-project",
-        es: "npm run reset-project",
-      }),
+      command: "npm run reset-project",
       middle1: t({
         en: "to get a fresh",
         fr: "pour obtenir un",
