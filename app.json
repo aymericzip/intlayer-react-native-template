@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Reat Native Intlayer",
-    "slug": "react-native-intlayer",
+    "name": "intlayer-react-native-app",
+    "slug": "intlayer-react-native-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "reactnativeintlayer",
+    "scheme": "intlayerreactnativeapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -38,7 +38,8 @@
             "backgroundColor": "#000000"
           }
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true,
