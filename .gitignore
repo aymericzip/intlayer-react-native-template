@@ -44,3 +44,7 @@ app-example
 
 # Intlayer
 .intlayer
+.vercel
+
+
+# bun.lock
